@@ -1,0 +1,45 @@
+<h1>Get in touch</h1>
+
+<form [formGroup]="form">
+  <div class="form-grid">
+    <mat-form-field appearance="outline" floatLabel="never">
+      <mat-label class="mat-label">Fast name:</mat-label>
+      <input class="mat-input" matInput formControlName="first_name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" floatLabel="always">
+      <mat-label class="mat-label">Last name:</mat-label>
+      <input class="mat-input" matInput formControlName="last_name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" floatLabel="never">
+      <mat-label class="mat-label">Email:</mat-label>
+      <input class="mat-input" matInput formControlName="email" />
+    </mat-form-field>
+
+    <div formGroupName="accountInfo">
+      <mat-radio-group
+        formControlName="account_type"
+        [(ngModel)]="this.selectedAccountType"
+        (change)="KnowValue()"
+      >
+        <mat-radio-button
+          *ngFor="let accountType of accountTypes"
+          [value]="accountType.value"
+        >
+          <span class="top-label">{{ accountType.label }}</span>
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <div class="center">
+    <button
+      (click)="sendFormData()"
+      mat-raised-button
+      color="primary"
+      [disabled]="!form.valid"
+    >
+      Submit
+    </button>
+  </div>
+</form>
